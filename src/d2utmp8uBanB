@@ -1,0 +1,26 @@
+#!/usr/bin/python3.5
+import sys
+sys.path.insert(0, "/usr/local/lib/python3.5/dist-packages/")
+import dryscrape
+
+dryscrape.start_xvfb()
+
+root_url = 'http://www.registrar.ucla.edu'
+sess = dryscrape.Session(base_url = root_url)
+
+# we don't need images
+sess.set_attribute('auto_load_images', False)
+
+# visit webpage
+sess.visit('/Faculty-Staff/Classrooms-and-Scheduling/Classroom-Grid-Search/Classroom-Details?class=BOELTER%20%7C%20%2003760%20%20&term=17S')
+response = sess.body()
+i = 0
+while i < 100:
+    sys.stdout.write(response[i])
+    i = i+1
+# print("http://www.registrar.ucla.edu/Faculty-Staff/Classrooms-and-Scheduling/Classroom-Grid-Search/Classroom-Details?class=BOELTER%20%7C%20%2003760%20%20&term=17S")
+# my_url = "http://www.registrar.ucla.edu/Faculty-Staff/Classrooms-and-Scheduling/Classroom-Grid-Search/Classroom-Details?class=BOELTER%20%7C%20%2003760%20%20&term=17S"
+# session = dryscrape.Session()
+# session.visit(my_url)
+# response = session.body()
+# print(type(response))
